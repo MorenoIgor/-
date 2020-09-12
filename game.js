@@ -172,6 +172,7 @@ spawnPlayer();
 let loop = GameLoop({  //Main Game Loop
   update: function() { // update the game state
 
+    if (player && tilesheet && enemysheet) { //Update 1.1: added verification so as not to have errors during resource loading
     //Copied straight from Mozilla Developer examples and modified for simplicity
     let gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
     gp = gamepads[0];
@@ -228,9 +229,11 @@ let loop = GameLoop({  //Main Game Loop
         updateTitle();
         updateDOM = false;
     }
+    }
   },
   render: function() { // render the game state
 
+    if (player && tilesheet && enemysheet) {    //Update 1.1: added verification so as not to have errors during resource loading
     for (i=0;i<=block.length-1;i++) {
         let anim = isFound(block[i].type)? block[i].anim : "404";
         
@@ -259,6 +262,7 @@ let loop = GameLoop({  //Main Game Loop
         laser.render();
     }
   }
+    }
 });
 
 loop.start();    //Starts the loop
